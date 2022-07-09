@@ -80,11 +80,11 @@
         }).then(function (result) {
           const { data: token } = result;
           if(token){
+            store.updateToken(token);
             message.info({
               content: "登录成功",
               duration: 2,
               onClose: ()=>{
-                store.updateToken(token);
                 router.push("/about");
               }
             });

@@ -53,9 +53,7 @@
         url: 'http://127.0.0.1:7001/api/auth/get_user',
       }).then(function(result) {
         const { success, data } = result;
-        console.log('========result:', result);
-        if(success){
-          console.log('========_self:', _self);
+        if(success) {
           _self.updateUserName(data.username);
           _self.updatePhone(data.phone);
           _self.updateEmail(data.email);
@@ -63,7 +61,6 @@
           message.info('获取用户信息失败，请稍后重新刷新页面');
         }
       }).catch(function(error){
-        console.log("======error:", error);
         message.info('获取用户信息失败，请稍后重新刷新页面或联系客服');
       });
     }

@@ -4,7 +4,6 @@ import router from './router';
 import { store } from './store';
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent
-  console.log('=====config:', config);
   const token = store.token;
   let newConfig;
   if(token){
@@ -29,12 +28,10 @@ axios.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
-  console.log('=====response:', response);
   // Any status code that lie within the range of 2xx cause this function to trigger
   // Do something with response data
   return response.data;
 }, function (error) {
-  console.log('=====error:', error);
   const { response } = error;
   const { data } = response;
   const { code } = data;

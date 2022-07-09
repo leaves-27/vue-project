@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { store } from '../store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,10 +33,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next)=>{
-  // if(to.meta && to.meta.permission && !localStorage.getItem('token')){
-  //   router.push("/login");
-  //   return;
-  // }
+  if(to.meta && to.meta.permission && !store.token){
+    router.push("/login");
+    return;
+  }
   next();
 })
 
