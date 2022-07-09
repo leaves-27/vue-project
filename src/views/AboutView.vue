@@ -1,18 +1,20 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <p>用户名：{{ userInfo.username }}</p>
-    <p>电话：{{ userInfo.phone }}</p>
-    <p>邮箱：{{ userInfo.email }}</p>
-  </div>
+    <div>
+      <h1>This is an about page</h1>
+      <p>用户名：{{ userInfo.username }}</p>
+      <p>电话：{{ userInfo.phone }}</p>
+      <p>邮箱：{{ userInfo.email }}</p>
+    </div>
+    </div>
 </template>
 
 <style>
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;
-    /* display: flex;
-    align-items: center; */
+    display: flex;
+    align-items: center;
   }
 }
 </style>
