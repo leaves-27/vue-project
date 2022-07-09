@@ -62,3 +62,4 @@ npm run lint
 1.组合式API风格、响应式核心原理熟悉
 2.vite构建工具熟悉
 3.测试用例添加
+4.vue3搭配的vue-devtools的安装问题
