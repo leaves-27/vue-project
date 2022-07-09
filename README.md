@@ -57,3 +57,8 @@ npm run test:e2e # or `npm run test:e2e:ci` for headless testing
 ```sh
 npm run lint
 ```
+
+# issue
+1.组合式API风格、响应式核心原理熟悉
+2.vite构建工具熟悉
+3.测试用例添加
