@@ -12,7 +12,9 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink 
+          v-show="store.token"
+          to="/about">About</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
       </nav>
     </div>
@@ -118,3 +120,16 @@ nav a:first-of-type {
   }
 }
 </style>
+<script lang="ts">
+import { defineComponent, reactive } from 'vue';
+import { store } from './store'
+
+export default defineComponent({
+  setup() {
+    return {
+      store
+    }
+  },
+})
+</script>
+

@@ -32,10 +32,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next)=>{
-  if(to.meta && to.meta.permission && !localStorage.getItem('token')){
-    router.push("/login");
-    return;
-  }
+  // if(to.meta && to.meta.permission && !localStorage.getItem('token')){
+  //   router.push("/login");
+  //   return;
+  // }
   next();
 })
 

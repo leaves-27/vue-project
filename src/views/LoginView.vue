@@ -51,6 +51,8 @@
   import { defineComponent, reactive } from 'vue';
   import axios from 'axios';
   import { message } from 'ant-design-vue';
+  import { store } from '../store';
+  import router from '../router'
 
   interface FormState {
     username: string;
@@ -68,7 +70,6 @@
       
       const onFinish = ((values: any) => {
         console.log('Success:', values);
-        const _self = this;
         axios({
           method: 'post',
           url: 'http://127.0.0.1:7001/api/user/login',
@@ -76,21 +77,25 @@
             userName: values.username,
             password: values.password
           }
-        }).then(function (response) {
-          const { data } = response;
-          const { data: token } = data;
+        }).then(function (result) {
+          const { data: token } = result;
           if(token){
-            message.info("登录成功");
-            localStorage.setItem("token", token);
-            // _self.$router.push("/about");
+            message.info({
+              content: "登录成功",
+              duration: 2,
+              onClose: ()=>{
+                store.updateToken(token);
+                router.push("/about");
+              }
+            });
           } else {
             message.info("用户名或密码不存在，请重新登录");
           }
-        }).catch(function(error){
-          console.log('=====error:', error);
-          message.info("登录失败，请重新登录")
+        }).catch(function(error) {
+          const { message: msg } = error;
+          message.info(msg);
         });
-      }).bind(this);
+      });
 
       const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
