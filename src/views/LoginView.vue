@@ -65,8 +65,10 @@
         password: '',
         remember: true,
       });
-      const onFinish = (values: any) => {
+      
+      const onFinish = ((values: any) => {
         console.log('Success:', values);
+        const _self = this;
         axios({
           method: 'post',
           url: 'http://127.0.0.1:7001/api/user/login',
@@ -77,11 +79,18 @@
         }).then(function (response) {
           const { data } = response;
           const { data: token } = data;
-          localStorage.setItem("token", token);
-        }).catch(function(){
+          if(token){
+            message.info("登录成功");
+            localStorage.setItem("token", token);
+            // _self.$router.push("/about");
+          } else {
+            message.info("用户名或密码不存在，请重新登录");
+          }
+        }).catch(function(error){
+          console.log('=====error:', error);
           message.info("登录失败，请重新登录")
         });
-      };
+      }).bind(this);
 
       const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);

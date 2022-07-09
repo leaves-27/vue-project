@@ -4,22 +4,23 @@ import router from './router';
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent
   console.log('=====config:', config);
-  const token = localStorage.getItem('token');
-  let newConfig;
-  if(token){
-    const { headers } = config;
-    newConfig = {
-      ...config,
-      headers: {
-        ...headers,
-        authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    }
-  } else {
-    newConfig = config;
-  }
+  // const token = localStorage.getItem('token');
+  // let newConfig;
+  // if(token){
+  //   const { headers } = config;
+  //   newConfig = {
+  //     ...config,
+  //     headers: {
+  //       ...headers,
+  //       Authorization: `Bearer ${localStorage.getItem('token')}`
+  //     }
+  //   }
+  // } else {
+  //   newConfig = config;
+  // }
   
-  return newConfig;
+  // return newConfig;
+  return config;
 }, function (error) {
   // Do something with request error
   return Promise.reject(error);
@@ -36,7 +37,7 @@ axios.interceptors.response.use(function (response) {
   const { response } = error;
   const { data } = response;
   const { code } = data;
-  if(code === "401") {
+  if(code && code === "401") {
     // 提示登录失效，然后跳转到登录页面
     message.info({
       content: "登录过期，需要重新登录。稍后将为你跳转到登录页面",
