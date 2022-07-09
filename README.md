@@ -63,3 +63,4 @@ npm run lint
 2.vite构建工具熟悉
 3.测试用例添加
 4.vue3搭配的vue-devtools的安装问题
+5.将store数据源更新到pinia
